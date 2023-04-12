@@ -1,0 +1,11 @@
+.BaseButton {
+  @apply w-full transition-all text-center disabled:opacity-30 disabled:cursor-not-allowed shadow p-4;
+
+  &.primary {
+    @apply rounded uppercase bg-black text-gray-100 hover:text-black hover:bg-gray-100 disabled:bg-black/30 disabled:text-gray-100/30;
+  }
+
+  &.outline {
+    @apply bg-none text-purple disabled:text-purple/30;
+  }
+}

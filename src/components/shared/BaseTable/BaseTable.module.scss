@@ -1,0 +1,14 @@
+.table {
+
+  &Wrap {
+    @apply w-full overflow-x-auto;
+
+    &::-webkit-scrollbar {
+      @apply rounded-[10px] h-2.5 bg-gray-100;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply rounded-[10px] h-2.5 bg-black;
+    }
+  }
+}

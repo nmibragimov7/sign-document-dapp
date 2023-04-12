@@ -1,0 +1,17 @@
+.BaseInput {
+  @apply text-black h-full w-full rounded leading-none bg-gray-100 p-4 placeholder:font-light placeholder:text-gray outline-none border-2 border-solid border-transparent;
+}
+
+.BaseInput::-webkit-outer-spin-button,
+.BaseInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.BaseInput:focus,
+.BaseInput:hover {
+  @apply border-purple;
+}
+
+.BaseInput:read-only {
+  @apply opacity-70 cursor-not-allowed;
+}

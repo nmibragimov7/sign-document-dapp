@@ -1,0 +1,24 @@
+.Header {
+  @apply transition-all rounded-br-lg rounded-bl-lg bg-black py-6 px-8;
+}
+
+.menuItem {
+  @apply min-w-[12rem] text-center py-3 cursor-pointer;
+
+  &:nth-child(1):hover ~ .active {
+    @apply translate-x-[0rem];
+  }
+  &:nth-child(2):hover ~ .active {
+    @apply translate-x-[12rem];
+  }
+  &:nth-child(3):hover ~ .active {
+    @apply translate-x-[24rem];
+  }
+  &:nth-child(4):hover ~ .active {
+    @apply translate-x-[36rem];
+  }
+}
+
+.active {
+  @apply absolute bottom-0 h-0.5 w-48 bg-purple transition-all;
+}
