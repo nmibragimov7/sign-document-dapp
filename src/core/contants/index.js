@@ -126,3 +126,8 @@ export const ABI = [
     }
 ];
 export const CONTRACT_ADDRESS = "0x296EbFDc02E1429757d2F3FEC75041C971CE6A15";
+
+export const links = [
+    { to: "/documents", title: "Документы" },
+    { to: "/adding", title: "Добавить документ" },
+];

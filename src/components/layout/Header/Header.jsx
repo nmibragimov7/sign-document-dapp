@@ -3,14 +3,12 @@ import {Web3Button} from "@web3modal/react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 
 import {classes} from "../../../core/helpers/classes.js";
+import {links} from "../../../core/contants/index.js";
+import burger from "../../../assets/burger.svg";
 import css from "./Header.module.scss";
 
-const links = [
-    { to: "/documents", title: "Документы" },
-    { to: "/adding", title: "Добавить документ" },
-];
 
-const Header = () => {
+const Header = ({setState}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const translateX = useMemo(() => {
@@ -32,7 +30,13 @@ const Header = () => {
                         <h1 className={"text-7xl font-bold"}>21</h1>
                         <p className={"text-xs uppercase"}>девишник</p>
                     </Link>
-                    <div className={"flex relative"}>
+                    <img
+                        src={burger}
+                        alt="burger"
+                        className={"md:hidden"}
+                        onClick={() => setState(true)}
+                    />
+                    <div className={"hidden md:flex relative"}>
                         {links.map(link => (
                             <div key={link.to} className={classes(css.menuItem)} onClick={() => navigate(link.to)}>
                                 <div
@@ -46,13 +50,15 @@ const Header = () => {
                         ))}
                         <div className={classes(css.active, `translate-x-[${translateX * 12}rem]`, !links.some(link => location.pathname === link.to) && "hidden")}/>
                     </div>
-                    <Web3Button
-                        icon="show"
-                        label="Подключить кошелек"
-                        balance="show"
-                        avatar="show"
-                        className={"text-red"}
-                    />
+                    <div className={"hidden md:block"}>
+                        <Web3Button
+                            icon="show"
+                            label="Подключить кошелек"
+                            balance="show"
+                            avatar="show"
+                            className={"text-red"}
+                        />
+                    </div>
                 </div>
             </div>
         </>

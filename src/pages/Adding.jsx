@@ -169,7 +169,7 @@ const Adding = () => {
     }, [signer, isConnected]);
 
     if (!isConnected) {
-        return <p className={"text-center uppercase text-2xl text-red font-bold"}>для добавления документа подключите кошелек</p>;
+        return <p className={"text-center uppercase md:text-2xl text-red font-bold"}>для добавления документа подключите кошелек</p>;
     }
 
     return (

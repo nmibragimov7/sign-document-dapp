@@ -22,7 +22,7 @@ const Detail = () => {
         try {
             setIsLoading(true);
             const response = await axios.get(`https://sign-document-2f405-default-rtdb.firebaseio.com/documents/${params.id}.json/`);
-            if(response.status === 200) {
+            if (response.status === 200) {
                 setData(response.data);
             }
         } catch (error) {
@@ -33,7 +33,7 @@ const Detail = () => {
         }
     }
     const download = () => {
-        if(data) {
+        if (data) {
             const link = document.createElement('a');
             link.href = data.url;
             link.download = data.name;
@@ -44,7 +44,7 @@ const Detail = () => {
         try {
             setIsLoadingSign(true);
             const singers = data.addresses.map(singer => {
-                if(singer.address === address) {
+                if (singer.address === address) {
                     singer.hash = hash;
                 }
 
@@ -61,7 +61,7 @@ const Detail = () => {
             };
 
             const response = await axios.put(`https://sign-document-2f405-default-rtdb.firebaseio.com/documents/${params.id}.json/`, body);
-            if(response.status === 200) {
+            if (response.status === 200) {
                 toast.success(`Хэш транзакции: ${hash}`);
             }
         } catch (error) {
@@ -89,8 +89,14 @@ const Detail = () => {
             setIsLoadingSign(false);
         }
     }
+    const cutText = (text, length = 41) => {
+        if (text && text.length) {
+            return text.substring(0, length) + "...";
+        }
+        return text;
+    }
     useEffect(() => {
-        if(params.id) {
+        if (params.id) {
             fetchDocument();
         }
     }, [params]);
@@ -109,58 +115,58 @@ const Detail = () => {
         <>
             {!isLoading && (
                 <div className={"max-w-3xl flex flex-col gap-2 mx-auto"}>
-                    <div>
+                    <div className={"flex flex-col md:flex-row"}>
                         <span className={"font-semibold"}>Инициатор: </span>
                         <Link
                             to={`/addresses/${data?.initiator}`}
                             className={"cursor-pointer font-semibold text-green hover:text-purple"}
                         >
-                            {data?.initiator}
+                            {cutText(data?.initiator)}
                         </Link>
                     </div>
-                    <div>
+                    <div className={"flex flex-col md:flex-row"}>
                         <span className={"font-semibold"}>Дата создания: </span>
                         <span>{formatDate(data?.date, "dd.LL.yyyy HH:mm")}</span>
                     </div>
-                    <div>
+                    <div className={"flex flex-col md:flex-row"}>
                         <span className={"font-semibold"}>Hash транзакции: </span>
                         <a
                             href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                             target="_blank"
                             className={"cursor-pointer text-primary-blue hover:text-purple"}
-                        >{data?.hash}</a>
+                        >{cutText(data?.hash, 45)}</a>
                     </div>
-                    <div>
+                    <div className={"flex flex-col md:flex-row"}>
                         <span className={"font-semibold"}>Наименование файла: </span>
                         <span>{data?.name}</span>
                     </div>
-                    <div>
+                    <div className={"flex flex-col md:flex-row"}>
                         <span className={"font-semibold"}>CRC32: </span>
                         <span>{data?.crc32}</span>
                     </div>
                     <div className={"mb-4"}>
                         <p className={"font-semibold"}>Подписанты: </p>
                         {data?.addresses.map((signer, idx) => (
-                            <div key={signer.address} className={"ml-4"}>
+                            <div key={signer.address} className={"ml-4 md:ml-0"}>
                                 <div className={"flex items-center gap-4"}>
-                                    <span className={"text-xl"}>{idx + 1}.</span>
-                                    <div>
-                                        <div>
+                                    <span className={"text-xl hidden md:block"}>{idx + 1}.</span>
+                                    <div className={"mb-4"}>
+                                        <div className={"flex flex-col md:flex-row"}>
                                             <span className={"font-semibold"}>адрес кошелька: </span>
                                             <a
                                                 href={`https://testnet.bscscan.com/address/${signer.address}`}
                                                 target="_blank"
                                                 className={"cursor-pointer text-primary-blue hover:text-purple"}
-                                            >{signer.address}</a>
+                                            >{cutText(signer.address, 35)}</a>
                                         </div>
-                                        <div>
+                                        <div className={"flex flex-col md:flex-row"}>
                                             <span className={"font-semibold"}>hash транзакции: </span>
                                             {signer.hash ? (
                                                 <a
                                                     href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                                                     target="_blank"
                                                     className={"cursor-pointer text-primary-blue hover:text-purple"}
-                                                >{signer.hash}</a>
+                                                >{cutText(signer.hash, 35)}</a>
                                             ) : <span>{signer.hash}</span>}
                                         </div>
                                     </div>

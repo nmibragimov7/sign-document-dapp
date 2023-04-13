@@ -3,6 +3,6 @@
 
   &:after {
     content: "";
-    @apply absolute -top-40 -bottom-40 bg-gradient-to-r from-gray-100 via-purple/20 animate-skeleton to-gray-100 rotate-12 z-10 w-full;
+    @apply absolute -top-40 -bottom-40 bg-gradient-to-r from-gray-100 via-gray/20 animate-skeleton to-gray-100 rotate-12 z-10 w-full;
   }
 }
