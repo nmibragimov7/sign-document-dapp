@@ -115,32 +115,43 @@ const Detail = () => {
         <>
             {!isLoading && (
                 <div className={"max-w-3xl flex flex-col gap-2 mx-auto"}>
-                    <div className={"flex flex-col md:flex-row"}>
+                    <div className={"flex flex-col md:flex-row md:gap-2"}>
                         <span className={"font-semibold"}>Инициатор: </span>
                         <Link
                             to={`/addresses/${data?.initiator}`}
-                            className={"cursor-pointer font-semibold text-green hover:text-purple"}
+                            className={"md:hidden cursor-pointer font-semibold text-green hover:text-purple"}
                         >
                             {cutText(data?.initiator)}
                         </Link>
+                        <Link
+                            to={`/addresses/${data?.initiator}`}
+                            className={"hidden md:block cursor-pointer font-semibold text-green hover:text-purple"}
+                        >
+                            {data?.initiator}
+                        </Link>
                     </div>
-                    <div className={"flex flex-col md:flex-row"}>
+                    <div className={"flex flex-col md:flex-row md:gap-2"}>
                         <span className={"font-semibold"}>Дата создания: </span>
                         <span>{formatDate(data?.date, "dd.LL.yyyy HH:mm")}</span>
                     </div>
-                    <div className={"flex flex-col md:flex-row"}>
+                    <div className={"flex flex-col md:flex-row md:gap-2"}>
                         <span className={"font-semibold"}>Hash транзакции: </span>
                         <a
                             href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                             target="_blank"
-                            className={"cursor-pointer text-primary-blue hover:text-purple"}
+                            className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
                         >{cutText(data?.hash, 45)}</a>
+                        <a
+                            href={`https://testnet.bscscan.com/tx/${data?.hash}`}
+                            target="_blank"
+                            className={"hidden md:block cursor-pointer text-primary-blue hover:text-purple"}
+                        >{data?.hash}</a>
                     </div>
-                    <div className={"flex flex-col md:flex-row"}>
+                    <div className={"flex flex-col md:flex-row md:gap-2"}>
                         <span className={"font-semibold"}>Наименование файла: </span>
                         <span>{data?.name}</span>
                     </div>
-                    <div className={"flex flex-col md:flex-row"}>
+                    <div className={"flex flex-col md:flex-row md:gap-2"}>
                         <span className={"font-semibold"}>CRC32: </span>
                         <span>{data?.crc32}</span>
                     </div>
@@ -151,22 +162,34 @@ const Detail = () => {
                                 <div className={"flex items-center gap-4"}>
                                     <span className={"text-xl hidden md:block"}>{idx + 1}.</span>
                                     <div className={"mb-4"}>
-                                        <div className={"flex flex-col md:flex-row"}>
+                                        <div className={"flex flex-col md:flex-row md:gap-2"}>
                                             <span className={"font-semibold"}>адрес кошелька: </span>
                                             <a
                                                 href={`https://testnet.bscscan.com/address/${signer.address}`}
                                                 target="_blank"
-                                                className={"cursor-pointer text-primary-blue hover:text-purple"}
+                                                className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
                                             >{cutText(signer.address, 35)}</a>
+                                            <a
+                                                href={`https://testnet.bscscan.com/address/${signer.address}`}
+                                                target="_blank"
+                                                className={"hidden md:block cursor-pointer text-primary-blue hover:text-purple"}
+                                            >{signer.address}</a>
                                         </div>
-                                        <div className={"flex flex-col md:flex-row"}>
+                                        <div className={"flex flex-col md:flex-row md:gap-2"}>
                                             <span className={"font-semibold"}>hash транзакции: </span>
                                             {signer.hash ? (
-                                                <a
-                                                    href={`https://testnet.bscscan.com/tx/${data?.hash}`}
-                                                    target="_blank"
-                                                    className={"cursor-pointer text-primary-blue hover:text-purple"}
-                                                >{cutText(signer.hash, 35)}</a>
+                                                <>
+                                                    <a
+                                                        href={`https://testnet.bscscan.com/tx/${data?.hash}`}
+                                                        target="_blank"
+                                                        className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
+                                                    >{cutText(signer.hash, 35)}</a>
+                                                    <a
+                                                        href={`https://testnet.bscscan.com/tx/${data?.hash}`}
+                                                        target="_blank"
+                                                        className={"hidden md:block cursor-pointer text-primary-blue hover:text-purple"}
+                                                    >{signer.hash}</a>
+                                                </>
                                             ) : <span>{signer.hash}</span>}
                                         </div>
                                     </div>
