@@ -24,17 +24,19 @@ const Sidebar = ({isShown, setState}) => {
                     onClick={() => setState(false)}
                 />
                 <div className={"flex flex-col gap-8 my-4"}>
-                    {links.map(link => (
-                        <div key={link.to} className={classes(css.menuItem)} onClick={() => onNavigate(link.to)}>
-                            <div
-                                className={classes(
-                                    "transition-all text-lg text-gray-100 font-semibold hover:text-purple",
-                                    {"!text-purple": location.pathname === link.to})}
-                            >
-                                {link.title}
+                    <div>
+                        {links.map(link => (
+                            <div key={link.to} className={classes(css.menuItem)} onClick={() => onNavigate(link.to)}>
+                                <div
+                                    className={classes(
+                                        "transition-all text-lg text-gray-100 font-semibold hover:text-purple",
+                                        {"!text-purple": location.pathname === link.to})}
+                                >
+                                    {link.title}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                     <div className={"flex justify-center"}>
                         <Web3Button
                             icon="show"
