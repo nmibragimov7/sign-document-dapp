@@ -16,7 +16,7 @@ const Sidebar = ({isShown, setState}) => {
 
     return (
         <>
-            <div className={classes("w-full max-w-xs z-10 md:hidden transition bg-black p-4 flex flex-col fixed top-0 right-0 bottom-0", {"-right-[100vh] translate-x-full": !isShown})}>
+            <div className={classes("w-full max-w-xs z-30 md:hidden transition bg-black p-4 flex flex-col fixed top-0 right-0 bottom-0", {"-right-[100vh] translate-x-full": !isShown})}>
                 <img
                     src={close}
                     alt="close"
