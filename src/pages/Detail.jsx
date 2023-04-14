@@ -89,7 +89,7 @@ const Detail = () => {
             setIsLoadingSign(false);
         }
     }
-    const cutText = (text, length = 41) => {
+    const cutText = (text, length = 30) => {
         if (text && text.length) {
             return text.substring(0, length) + "...";
         }
@@ -140,7 +140,7 @@ const Detail = () => {
                             href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                             target="_blank"
                             className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
-                        >{cutText(data?.hash, 45)}</a>
+                        >{cutText(data?.hash)}</a>
                         <a
                             href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                             target="_blank"
@@ -168,7 +168,7 @@ const Detail = () => {
                                                 href={`https://testnet.bscscan.com/address/${signer.address}`}
                                                 target="_blank"
                                                 className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
-                                            >{cutText(signer.address, 35)}</a>
+                                            >{cutText(signer.address)}</a>
                                             <a
                                                 href={`https://testnet.bscscan.com/address/${signer.address}`}
                                                 target="_blank"
@@ -183,7 +183,7 @@ const Detail = () => {
                                                         href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                                                         target="_blank"
                                                         className={"md:hidden cursor-pointer text-primary-blue hover:text-purple"}
-                                                    >{cutText(signer.hash, 35)}</a>
+                                                    >{cutText(signer.hash)}</a>
                                                     <a
                                                         href={`https://testnet.bscscan.com/tx/${data?.hash}`}
                                                         target="_blank"
